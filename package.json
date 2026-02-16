@@ -1,0 +1,14 @@
+{
+  "name": "ticketingproject",
+  "version": "1.0.0",
+  "description": "Ticketing project with separate frontend and backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "cd backend && npm start"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

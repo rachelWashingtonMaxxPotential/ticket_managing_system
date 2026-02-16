@@ -1,0 +1,22 @@
+/* styles.css - Custom styles to complement Bootstrap */
+body {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.card {
+    border: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.display-4 {
+    font-weight: bold;
+}
+
+header h1 {
+    font-weight: 600;
+}
