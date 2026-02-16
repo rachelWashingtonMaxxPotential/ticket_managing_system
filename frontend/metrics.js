@@ -172,9 +172,11 @@ function calculateMetrics(lines) {
             metrics.volumeByWeek[weekKey] = (metrics.volumeByWeek[weekKey] || 0) + 1;
         }
 
-        // Backlog age buckets (only for active or waiting on customer tickets)
+        // Backlog age buckets (all non-resolved tickets)
         const statusLower = ticket.status.toLowerCase();
-        if ((statusLower === 'active' || statusLower === 'waiting on customer') && ticket.createdDate) {
+        const isResolved = statusLower === 'solved' || statusLower === 'resolved' || statusLower === 'closed';
+        
+        if (!isResolved && ticket.createdDate) {
             const age = getDaysDifference(ticket.createdDate, now);
             if (age <= 2) {
                 metrics.backlogByAge['0-2d']++;
@@ -335,11 +337,12 @@ function displayMetrics(metrics) {
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card text-center bg-warning text-dark">
+                <div class="card text-center bg-warning text-dark" style="cursor: pointer;" onclick="window.location.href='/backlog.html'">
                     <div class="card-body">
                         <h5 class="card-title">Open Backlog</h5>
                         <p class="display-4 mb-0">${totalBacklog}</p>
-                        <small>Active + Waiting on Customer</small>
+                        <small>All Non-Resolved Tickets</small>
+                        <div class="mt-2"><small>Click to view details →</small></div>
                     </div>
                 </div>
             </div>
